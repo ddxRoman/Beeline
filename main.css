@@ -1,0 +1,215 @@
+body {
+    font-family: sans-serif;
+    margin: 5%;
+    background: #f4f4f4;
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background: #fff;
+    border-bottom: 2px solid #eee;
+}
+
+.navbar {
+    background: #333;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 10px;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.tariff-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.tariff-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    height: 150px;
+    background-size: cover;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.4);
+    background-blend-mode: multiply;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+    /* Обновленные стили модального окна в стиле провайдеров */
+        .modal {
+            display: none; /* Скрыто по умолчанию */
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            
+            /* ЦЕНТРИРОВАНИЕ */
+            display: none; 
+            align-items: center;
+            justify-content: center;
+            padding: 20px; /* Отступ от краев экрана на мобилках */
+            
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 24px;
+            width: 100%;
+            max-width: 500px;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            /* Убеждаемся, что контент не уезжает */
+            margin: auto; 
+        }
+
+        .close {
+            position: absolute;
+            right: 24px;
+            top: 24px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #999;
+            transition: color 0.2s;
+        }
+
+        .close:hover {
+            color: #333;
+        }
+
+        .modal-content h2 {
+            margin: 0 0 8px 0;
+            font-size: 28px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .modal-content .subtitle {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 24px;
+        }
+
+        .tariff-badge {
+            display: inline-block;
+            background: #f0f2f5;
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* Сетка формы */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 12px;
+        }
+
+        .form-group {
+            grid-column: span 6;
+            margin-bottom: 4px;
+        }
+
+        .form-group.half { grid-column: span 3; }
+        .form-group.third { grid-column: span 2; }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 4px;
+            margin-left: 4px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 15px;
+            background: #fafafa;
+            transition: all 0.2s;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #ffcc00;
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(255, 204, 0, 0.2);
+        }
+
+        .consent {
+            grid-column: span 6;
+            font-size: 12px;
+            color: #888;
+            margin-top: 12px;
+            line-height: 1.4;
+        }
+
+        .consent a { color: #007bff; text-decoration: none; }
+
+        .modal-buttons {
+            grid-column: span 6;
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .btn-submit {
+            background-color: #ffcc00; /* Фирменный желтый как на скринах */
+            color: #000;
+            border: none;
+            padding: 16px;
+            cursor: pointer;
+            font-weight: 700;
+            flex: 2;
+            border-radius: 14px;
+            font-size: 16px;
+            transition: transform 0.1s, background 0.2s;
+        }
+
+        .btn-submit:hover { background-color: #ffdb4d; }
+        .btn-submit:active { transform: scale(0.98); }
+
+        .btn-cancel {
+            background-color: #fff;
+            color: #666;
+            border: 1px solid #e0e0e0;
+            padding: 16px;
+            cursor: pointer;
+            flex: 1;
+            border-radius: 14px;
+            font-size: 15px;
+        }
+
+        .btn-cancel:hover { background-color: #f5f5f5; }
+   

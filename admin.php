@@ -149,6 +149,7 @@ if (isset($_POST['save_address'])) {
 <head>
     <meta charset="UTF-8">
     <title>Админ-панель Билайн</title>
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <style>
         body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #f4f7f6; margin: 0; padding: 20px; color: #333; }
         .container { max-width: 1200px; margin: 0 auto; }

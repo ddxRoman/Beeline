@@ -1,0 +1,84 @@
+/* 1. ИСПРАВЛЕНИЕ НАВБАРА (Скролл-лента) */
+.navbar {
+    display: flex !important;
+    flex-wrap: nowrap !important; /* Запрещаем перенос */
+    overflow-x: auto !important; /* Включаем горизонтальный скролл */
+    -webkit-overflow-scrolling: touch; /* Плавный скролл на iOS */
+    padding: 10px 15px !important;
+    gap: 20px !important;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+}
+
+/* Скрываем некрасивый скроллбар, но оставляем функционал */
+.navbar::-webkit-scrollbar {
+    display: none;
+}
+
+.navbar a {
+    flex: 0 0 auto !important; /* Не даем ссылкам сжиматься */
+    white-space: nowrap !important; /* Текст в одну строку */
+    font-size: 15px;
+    color: #000;
+    text-decoration: none;
+    padding: 8px 0;
+    border-bottom: 2px solid transparent;
+}
+
+.navbar a.active {
+    border-bottom: 2px solid var(--beeline-yellow);
+    font-weight: bold;
+}
+
+/* 2. ИСПРАВЛЕНИЕ МОДАЛКИ (чтобы не вылетала) */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 99999;
+    padding: 15px; /* Отступ от краев экрана */
+    overflow-y: auto; /* Скролл всей модалки, если она длинная */
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: #fff;
+    width: 100%;
+    max-width: 450px;
+    border-radius: 20px;
+    padding: 25px;
+    position: relative;
+    margin: auto; /* Центрирование */
+}
+
+/* 3. ОБЩИЕ ПРАВКИ ДЛЯ МОБИЛОК */
+@media (max-width: 768px) {
+    nav{
+            justify-content: flex-start !important; /* Начинаем строго с начала */
+    }
+    .main-header {
+        padding: 10px 15px !important;
+    }
+    .hero {
+        padding: 40px 15px !important;
+    }
+    .hero h1 {
+        font-size: 24px !important;
+    }
+    .search-box {
+        flex-direction: column;
+    }
+    #checkBtn {
+        width: 100%;
+        height: 50px;
+    }
+    /* Чтобы футер не тянулся в один узкий столбик */
+    .footer-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        text-align: left;
+    }
+}

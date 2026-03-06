@@ -29,7 +29,9 @@ try {
     <title>Билайн — Интернет и ТВ в Краснодаре</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="mobile_main.css">
     <meta name="robots" content="all"/>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 <meta name="robots" content="index, follow"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -58,32 +60,7 @@ try {
 
         .phone { font-weight: bold; font-size: 18px; }
 
-        /* Навигация */
-        .navbar {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            padding: 15px 0;
-            background: #fff;
-            border-bottom: 1px solid #f5f5f5;
-        }
 
-        .navbar a {
-            text-decoration: none;
-            color: #444;
-            font-weight: 500;
-            font-size: 14px;
-            transition: color 0.2s;
-        }
-
-        .navbar a:hover {
-            color: var(--beeline-yellow);
-        }
-
-        .navbar a.active {
-            font-weight: 700;
-            border-bottom: 2px solid var(--beeline-yellow);
-        }
 
         /* Блок поиска (Hero) */
         .hero {
@@ -119,7 +96,7 @@ try {
         /* Выпадающий список */
         #autocomplete-list {
             position: absolute;
-            top: calc(100% + 10px);
+            top: calc(30% + 10px);
             left: 0;
             right: 0;
             background: #fff;
@@ -254,7 +231,19 @@ try {
     <div class="phone"><?= $phone ?></div>
 </header>
 
-<nav class="navbar">
+
+
+<main>
+    <section class="hero">
+        <h1>Подключить интернет в Краснодаре</h1>
+        <div class="search-box">
+            <input type="text" id="addressInput" placeholder="Улица и дом..." autocomplete="off"><br>
+            <button id="checkBtn" onclick="checkAddress()">Проверить</button>
+            <div id="autocomplete-list"></div>
+        </div>
+        <div id="addressResult" class="result-box"></div>
+    </section>
+    <nav class="navbar">
     <a href="index.php" class="<?= $category == 'all' ? 'active' : '' ?>">Тарифы</a>
     <a href="index.php?cat=internet" class="<?= $category == 'internet' ? 'active' : '' ?>">Интернет</a>
     <a href="index.php?cat=tv_internet" class="<?= $category == 'tv_internet' ? 'active' : '' ?>">Интернет + ТВ</a>
@@ -262,17 +251,6 @@ try {
     <a href="#">Акции</a>
     <a href="contacts.php">Контакты</a>
 </nav>
-
-<main>
-    <section class="hero">
-        <h1>Подключить интернет в Краснодаре</h1>
-        <div class="search-box">
-            <input type="text" id="addressInput" placeholder="Улица и дом..." autocomplete="off">
-            <button id="checkBtn" onclick="checkAddress()">Проверить</button>
-            <div id="autocomplete-list"></div>
-        </div>
-        <div id="addressResult" class="result-box"></div>
-    </section>
   <div class="tariff-grid">
         <?php foreach ($tariffs as $tariff): ?>
             <div class="tariff-card">
@@ -452,7 +430,7 @@ function renderResult(d) {
         resBox.innerHTML = `
             <div style="padding: 15px; border: 1px solid #28a745; border-radius: 8px; background: #f8fff9;">
                 <h3 style="color:green; margin:0">Доступно!</h3>
-                <p>ул. ${d.street}, д. ${d.house}. <br>Скорость до <strong>${d.max_speed || 100} Мбит/с</strong>.</p>
+                <p>ул. ${d.street}, д. ${d.house}. <br>Скорость <strong>${d.max_speed || 100} Мбит/с</strong>.</p>
                 <button class="btn-order" 
                         style="width:auto; padding:8px 25px; cursor:pointer; background:#ffdc00; border:none; border-radius:4px; font-weight:bold;" 
                         onclick="openModal('Заявка по адресу', '${d.street}', '${d.house}', 'Краснодар')">

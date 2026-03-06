@@ -1,5 +1,4 @@
 <style>
-<style>
     /* Переменные для консистентности цветов */
     :root {
         --beeline-yellow: #ffcc00;
@@ -122,7 +121,6 @@
             grid-template-columns: 1fr;
         }
     }
-</style>
 </style>
 
 <footer class="main-footer">

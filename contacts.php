@@ -1,12 +1,23 @@
+<?php
+
+require_once 'static_date.php';
+
+?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <title>Контакты — Билайн Краснодар</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        /* Глобальные настройки в стиле Билайн */
-        :root {
+    <!-- <link rel="stylesheet" href="main.css"> -->
+    <meta name="robots" content="all"/>
+<meta name="robots" content="index, follow"/>
+</head>
+<body>
+
+
+<style>
+    :root {
             --beeline-yellow: #ffcc00;
             --beeline-black: #222222;
             --beeline-gray: #f2f2f2;
@@ -144,31 +155,18 @@
             margin-bottom: 60px;
         }
 
-        /* Футер */
-        footer {
-            background: var(--beeline-black);
-            color: #fff;
-            padding: 60px 10%;
-            text-align: center;
-        }
 
-        footer p {
-            opacity: 0.6;
-            font-size: 14px;
-        }
 
         @media (max-width: 768px) {
             h1 { font-size: 32px; }
             .contacts-container { padding: 30px 5%; }
         }
-    </style>
-</head>
-<body>
+</style>
 
 <header class="main-header">
     <a href="index.php" class="logo">Билайн</a>
     <div class="header-info">
-        <span class="phone">0611 / +7 800 700 0611</span>
+        <span class="phone"><?= $phone?></span>
     </div>
 </header>
 
@@ -188,9 +186,9 @@
         <div class="contact-card">
             <h3>📞 Поддержка</h3>
             <p>Для мобильной связи (бесплатно):</p>
-            <p class="highlight">0611</p>
+            <p class="highlight"><?= $phone?></p>
             <p>С любого телефона:</p>
-            <p class="highlight">8 800 700 0611</p>
+            <p class="highlight"><?= $phone?></p>
         </div>
 
         <div class="contact-card">
@@ -221,9 +219,7 @@
     </div>
 </main>
 
-<footer>
-    <p>© 2026 ПАО «ВымпелКом». Краснодарский край.</p>
-</footer>
+<?require_once 'footer.php';?>
 
 </body>
 </html>

@@ -1,12 +1,7 @@
 <?php
 // Подключение к БД
-$host = '127.0.1.13';
-$db   = 'Beeline';
-
-$user = 'root';
-$pass = '';
-$charset = 'utf8mb4';
-
+require_once 'db_config.php';
+require_once 'static_date.php';
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
 try {
     $pdo = new PDO($dsn, $user, $pass);
@@ -36,22 +31,22 @@ $tariffs = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <link rel="icon" href="favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="main.css">
-    <meta name="robots" content="all"/>
-<meta name="robots" content="index, follow"/>
-<meta
-    name="description"
-    content="Подключить интернет не дорого Краснодар"
->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="robots" content="index, follow"/>
+    <meta name="description" content="Подключить интернет недорого в Краснодаре">
+    <style>
+
+    </style>
 </head>
 <body>
 
 <header class="main-header">
     <a href="index.php">
-    <img src="logo.svg" alt="Билайн">
+        <img src="logo.svg" alt="Билайн">
     </a>
     <h1>Билайн домашний интернет и Телевидение</h1>
     <div class="header-info" style="display: flex; align-items: center;">
-        <span class="phone">+7 (999) 000-00-00</span>
+        <span class="phone"><?= $phone ?></span>
         <button class="btn-connect" onclick="openModal('Заявка')">Подключить</button>
     </div>
 </header>
@@ -66,31 +61,34 @@ $tariffs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </nav>
 
 <main>
+    <!-- ОБНОВЛЕННЫЙ БЛОК ПРОВЕРКИ АДРЕСА -->
     <section class="check-address">
+        <i class="fa-solid fa-bugs bee-decor bee-1"></i>
+        <i class="fa-solid fa-bugs bee-decor bee-2"></i>
+        
         <h3>Проверьте возможность подключения по адресу</h3>
-        <div style="display: flex; justify-content: center;">
-            <input type="text" id="addressInput" placeholder="Улица, дом...">
-            <button onclick="checkAddress()">Проверить</button>
+        <div class="search-container">
+            <input type="text" id="addressInput" placeholder="Улица, дом (например: Красная, 1)">
+            <button onclick="checkAddress()">
+                <i class="fa-solid fa-magnifying-glass"></i> Проверить
+            </button>
         </div>
     </section>
 
     <div class="tariff-grid">
         <?php foreach ($tariffs as $tariff): ?>
             <div class="tariff-card">
-                <!-- Фон карточки (заменил на стилизованную картинку с пчелкой) -->
                 <div class="card-header" style="background-image: url('<?= $tariff['image_url'] ?: 'https://img.freepik.com/free-photo/cute-bee-character-with-yellow-and-black-stripes_23-2151601673.jpg' ?>');">
                     <h3><?= htmlspecialchars($tariff['name']) ?></h3>
                     <p class="price"><?= number_format($tariff['price'], 0, '.', ' ') ?> ₽/мес</p>
                 </div>
 
                 <div class="card-body">
-                    <!-- Акция (promo) -->
                     <?php if(!empty($tariff['promo'])): ?>
                         <div class="promo-text">🎁 <?= htmlspecialchars($tariff['promo']) ?></div>
                     <?php endif; ?>
 
                     <ul>
-                        <!-- Скорость (speed) -->
                         <?php if($tariff['speed'] !== null): ?>
                             <li>
                                 <span class="label">Скорость интернета</span>
@@ -98,7 +96,6 @@ $tariffs = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             </li>
                         <?php endif; ?>
 
-                        <!-- ТВ каналы (tv_channels) -->
                         <?php if($tariff['tv_channels'] !== null): ?>
                             <li>
                                 <span class="label">Телевидение</span>
@@ -106,7 +103,6 @@ $tariffs = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             </li>
                         <?php endif; ?>
 
-                        <!-- Мобильный интернет (mobile_gb) -->
                         <?php if($tariff['mobile_gb'] !== null): ?>
                             <li>
                                 <span class="label">Мобильный интернет</span>
@@ -114,7 +110,6 @@ $tariffs = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             </li>
                         <?php endif; ?>
 
-                        <!-- Минуты (mobile_minutes) -->
                         <?php if($tariff['mobile_minutes'] !== null): ?>
                             <li>
                                 <span class="label">Звонки</span>
@@ -122,7 +117,6 @@ $tariffs = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             </li>
                         <?php endif; ?>
 
-                        <!-- СМС (mobile_sms) -->
                         <?php if($tariff['mobile_sms'] !== null): ?>
                             <li>
                                 <span class="label">SMS</span>
@@ -131,12 +125,10 @@ $tariffs = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <?php endif; ?>
                     </ul>
 
-                    <!-- Описание (description) -->
                     <?php if(!empty($tariff['description'])): ?>
                         <p class="description"><?= nl2br(htmlspecialchars($tariff['description'])) ?></p>
                     <?php endif; ?>
 
-                    <!-- Примечание (note) -->
                     <?php if(!empty($tariff['note'])): ?>
                         <p class="note">* <?= htmlspecialchars($tariff['note']) ?></p>
                     <?php endif; ?>
@@ -148,38 +140,7 @@ $tariffs = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
 </main>
 
-<footer class="main-footer">
-    <div class="footer-grid">
-        <div class="footer-column">
-            <h4>Продукты</h4>
-            <ul>
-                <li><a href="#">Домашний интернет</a></li>
-                <li><a href="#">Мобильная связь</a></li>
-                <li><a href="#">Билайн ТВ</a></li>
-            </ul>
-        </div>
-        <div class="footer-column">
-            <h4>Компания</h4>
-            <ul>
-                <li><a href="contacts.php">О нас</a></li>
-                <li><a href="#">Вакансии</a></li>
-                <li><a href="#">Новости</a></li>
-            </ul>
-        </div>
-        <div class="footer-column">
-            <h4>Помощь</h4>
-            <ul>
-                <li><a href="#">Личный кабинет</a></li>
-                <li><a href="#">Оплата</a></li>
-                <li><a href="#">Настройка роутера</a></li>
-            </ul>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        <p>© 2026 ПАО «ВымпелКом». Краснодарский край.</p>
-        <div>VK | TG | OK</div>
-    </div>
-</footer>
+<?php require_once 'footer.php'; ?>
 
 <!-- МОДАЛЬНОЕ ОКНО -->
 <div id="modalForm" class="modal">
@@ -218,6 +179,14 @@ $tariffs = $stmt->fetchAll(PDO::FETCH_ASSOC);
         document.body.style.overflow = 'auto';
     }
     window.onclick = function(e) { if (e.target.className == 'modal') closeModal(); }
+    
+    // Заглушка для функции проверки адреса
+    function checkAddress() {
+        const addr = document.getElementById('addressInput').value;
+        if(!addr) return alert('Введите адрес');
+        alert('Проверяем техническую возможность для: ' + addr);
+        // Здесь будет AJAX запрос к базе данных
+    }
 </script>
 </body>
 </html>

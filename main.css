@@ -153,14 +153,6 @@
             margin-top: auto;
         }
 
-        /* Футер */
-        .main-footer { background-color: var(--beeline-light-gray); padding: 60px 10% 30px; border-top: 1px solid #eee; margin-top: 40px; }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 50px; }
-        .footer-column h4 { font-size: 18px; margin-bottom: 20px; font-weight: 700; }
-        .footer-column ul { list-style: none; padding: 0; }
-        .footer-column ul li { margin-bottom: 12px; }
-        .footer-column ul li a { text-decoration: none; color: var(--beeline-text-gray); font-size: 14px; }
-        .footer-bottom { padding-top: 30px; border-top: 1px solid #e0e0e0; display: flex; justify-content: space-between; font-size: 13px; color: #999; }
 
         /* Модалка */
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); align-items: center; justify-content: center; padding: 20px; }
@@ -173,4 +165,77 @@
         .form-group.third { grid-column: span 2; }
         .form-group input { width: 100%; padding: 14px; border: 2px solid #f0f0f0; border-radius: 16px; background: #f9f9f9; box-sizing: border-box; }
         .btn-submit { background: #ffcc00; border: none; padding: 18px; border-radius: 18px; width: 100%; font-weight: 800; font-size: 18px; cursor: pointer; margin-top: 20px; }
-   
+           /* Глобальные настройки в стиле Билайн */
+                /* Стили для нового блока проверки адреса */
+        .check-address {
+            background: linear-gradient(135deg, #ffcc00 0%, #000000 100%);
+            padding: 40px 20px;
+            border-radius: 20px;
+            margin: 20px 0 40px;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .check-address h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .search-container {
+            display: flex; 
+            justify-content: center; 
+            max-width: 600px; 
+            margin: 0 auto; 
+            position: relative; 
+            z-index: 2;
+            gap: 10px;
+        }
+
+        .search-container input {
+            flex: 1;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            outline: none;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .search-container button {
+            background: #ffcc00;
+            color: #000;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .search-container button:hover {
+            background: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* Декоративные пчелки */
+        .bee-decor {
+            position: absolute;
+            font-size: 40px;
+            opacity: 0.2;
+            z-index: 1;
+            filter: grayscale(1) brightness(2);
+        }
+        .bee-1 { top: 10%; left: 5%; transform: rotate(-20deg); }
+        .bee-2 { bottom: 10%; right: 5%; transform: rotate(15deg); }
+
+        @media (max-width: 600px) {
+            .search-container { flex-direction: column; }
+            .search-container button { width: 100%; }
+        }

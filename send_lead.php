@@ -7,9 +7,7 @@
 // Подключаем настройки базы данных (файл db_config.php должен быть в той же папке)
 require_once 'db_config.php';
 
-// Данные бота
-$token = "8307829795:AAEuWCLhtqf6iXZD3YrpNhPjmPlHhXcRRXc";
-$chat_id = "-1003792707742";
+
 
 // Получаем данные из формы (защищаем от пустых значений)
 $name    = $_POST['name'] ?? 'Не указано';

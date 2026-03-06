@@ -150,7 +150,7 @@
         <a href="#">Акции</a>
         </li>
     <li>
-        аваывлопапва
+        
         <a href="contacts.php">Контакты</a>
         </li>
         <li>

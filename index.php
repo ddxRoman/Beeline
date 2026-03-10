@@ -222,13 +222,21 @@ try {
             max-width: 400px;
             position: relative;
         }
+        .link_phone{
+            color: black;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
 
 <header class="main-header">
     <a href="index.php"><img src="logo.svg" alt="Билайн" width="100"></a>
-    <div class="phone"><?= $phone ?></div>
+    <div class="phone">
+        <a class="link_phone" href="tel:<?= $phone ?>?>">
+        <?= $phone ?>
+        </a>
+    </div>
 </header>
 
 
@@ -237,7 +245,7 @@ try {
     <section class="hero">
         <h1>Подключить интернет в Краснодаре</h1>
         <div class="search-box">
-            <input type="text" id="addressInput" placeholder="Улица и дом..." autocomplete="off"><br>
+            <input type="text" id="addressInput" placeholder="Улица и дом..."  autocomplete="off"><br>
             <button id="checkBtn" onclick="checkAddress()">Проверить</button>
             <div id="autocomplete-list"></div>
         </div>
@@ -336,6 +344,7 @@ try {
                         <input type="text" name="house" placeholder="Дом" required>
                         <input type="text" name="apartment" placeholder="Кв.">
                     </div>
+                                <input type="hidden" name="verification" id="modalverification">
                 </div>
             </div>
             <button type="submit" class="btn-submit">Отправить заявку</button>
@@ -374,11 +383,12 @@ try {
         <span onclick="closeModal()" style="position:absolute; top:15px; right:15px; cursor:pointer; font-size:24px;">&times;</span>
         <form action="send_lead.php" method="POST">
             <h2 id="modalTitle">Заявка</h2>
-            <!-- <input type="hidden" name="tariff_id" id="hiddenTariff"> -->
+            <input type="hidden" name="tariff_id" id="hiddenTariff">
             <input type="text" name="phone" placeholder="+7 (___) ___-__-__" required>
             <input type="text" name="name" placeholder="Имя" required>
             <input type="text" name="street" id="modalStreet" placeholder="Улица">
-            <input type="text" name="house" id="modalHouse" placeholder="Дом">
+            <input type="text" name="house" id="verification" placeholder="Дом">
+            <input type="hidden" name="verification" id="modalverification">
             <button type="submit" class="btn-order" style="background:#000; color:#fff;">Отправить</button>
         </form>
     </div>
